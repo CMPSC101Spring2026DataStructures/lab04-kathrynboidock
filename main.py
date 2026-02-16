@@ -1,7 +1,7 @@
 
 # Basic Rock Paper Scissors Game
-# Name: Add Your Name Here
-# Date: Add The Date Here
+# Name: Kathryn Boidock
+# Date: 02/16/2026
 
 import random
 
@@ -35,21 +35,42 @@ console = Console()
 choices = ['rock', 'paper', 'scissors']
 num_to_choice = {'1': 'rock', '2': 'paper', '3': 'scissors'}
 
-# TODO: Implement this function to get and validate the user's choice.
+# : Implement this function to get and validate the user's choice.
 def get_user_choice():
 	"""Prompt the user for their choice and return 'rock', 'paper', or 'scissors'."""
-	# TODO: Use console.input and validate input (accept 1/2/3 or words)
-	pass
+	# : Use console.input and validate input (accept 1/2/3 or words)
+	while True:
+		user_input = console.input("Please enter your choice (1/rock, 2/paper, or 3/scissors): ").lower().strip()
+		if user_input in num_to_choice:
+			user_choice = num_to_choice[user_input]
+		else:
+			user_choice = user_input
+		if user_choice in choices:
+			break
+		else:
+			console.print("Please enter a valid choice!")
+	
+	return user_choice
 
-# TODO: Implement this function to randomly select the computer's choice.
+# : Implement this function to randomly select the computer's choice.
 def get_computer_choice():
 	"""Randomly return 'rock', 'paper', or 'scissors'."""
-	pass
+	return random.choice(choices)
 
-# TODO: Implement this function to determine the winner of a round.
+# : Implement this function to determine the winner of a round.
 def determine_winner(user_choice, computer_choice):
 	"""Return 'user', 'computer', or 'tie' based on the choices."""
-	pass
+	if user_choice == computer_choice:
+		return "tie"
+	elif user_choice == "rock" and computer_choice == "scissors":
+		return "user"
+	elif user_choice == "paper" and computer_choice == "rock":
+		return "user"
+	elif user_choice == "scissors" and computer_choice == "paper":
+		return "user"
+	else:
+		return "computer"
+
 
 # TODO: Implement this function to print the round result with color.
 def print_round_result(user_choice, computer_choice, winner):
